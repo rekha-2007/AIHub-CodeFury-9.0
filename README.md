@@ -1,16 +1,92 @@
-# React + Vite
+# AIHub – AI Marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+AIHub is a modern AI marketplace designed to help users discover, compare, evaluate, and choose the right AI tools for their needs.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://ai-hub-code-fury-9-0.vercel.app
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔍 Explore AI tools
+- 📊 Compare different AI tools
+- 🤖 AI Match for personalized recommendations
+- 🎮 AI Playground for testing use cases
+- ✅ Verified AI tools
+- ⭐ Ratings and trust scores
+- 📱 Responsive modern UI
+- 🌙 Dark futuristic AI-themed interface
 
-## Expanding the Oxlint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+
+## 📂 Project Structure
+
+```text
+AIHub/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+└── vite.config.js
+
+## 🎯 Purpose
+
+AIHub makes it easier for users to discover and evaluate AI tools from different categories such as:
+
+- Coding
+- Image
+- Writing
+- Analytics
+- Education
+- Business
+
+## 🧩 Main Pages
+
+### 🏠 Home
+Introduces AIHub and highlights trusted AI tools.
+
+### 🔎 Explore
+Browse AI tools by category and view ratings, users, trust scores, and pricing.
+
+### ⚖️ Compare
+Compare multiple AI tools based on rating, trust score, users, and pricing.
+
+### 🤖 AI Match
+Get an AI tool recommendation based on the user's requirements.
+
+### 🎮 AI Playground
+Enter an AI use case and get a suitable AI tool suggestion.
+
+## 🏆 Hackathon Project
+
+Built for **CodeFury 9.0 Hackathon**.
+
+## 👩‍💻 Developer
+
+**Rekha**
+
+GitHub: https://github.com/rekha-2007
+
+## ⭐ Future Improvements
+
+- User authentication
+- Real AI API integration
+- More AI tools and categories
+- Advanced filtering and search
+- User reviews and ratings
+- Personalized AI recommendations
+
+---
+
+⭐ If you like this project, consider giving it a star!
