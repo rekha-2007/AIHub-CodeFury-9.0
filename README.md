@@ -1,92 +1,98 @@
-# AIHub – AI Marketplace
+# 🤖 AIHub – Trusted AI Marketplace
 
-AIHub is a modern AI marketplace designed to help users discover, compare, evaluate, and choose the right AI tools for their needs.
+AIHub is a modern AI marketplace that helps users discover, explore, compare, and choose AI tools based on their requirements.
 
-## 🚀 Live Demo
-
-https://ai-hub-code-fury-9-0.vercel.app
-
-## ✨ Features
-
-- 🔍 Explore AI tools
-- 📊 Compare different AI tools
-- 🤖 AI Match for personalized recommendations
-- 🎮 AI Playground for testing use cases
-- ✅ Verified AI tools
-- ⭐ Ratings and trust scores
-- 📱 Responsive modern UI
-- 🌙 Dark futuristic AI-themed interface
-
-## 🛠️ Tech Stack
-
-- React.js
-- Vite
-- JavaScript
-- HTML5
-- CSS3
-
-## 📂 Project Structure
-
-```text
-AIHub/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-└── vite.config.js
-
-## 🎯 Purpose
-
-AIHub makes it easier for users to discover and evaluate AI tools from different categories such as:
-
-- Coding
-- Image
-- Writing
-- Analytics
-- Education
-- Business
-
-## 🧩 Main Pages
-
-### 🏠 Home
-Introduces AIHub and highlights trusted AI tools.
-
-### 🔎 Explore
-Browse AI tools by category and view ratings, users, trust scores, and pricing.
-
-### ⚖️ Compare
-Compare multiple AI tools based on rating, trust score, users, and pricing.
-
-### 🤖 AI Match
-Get an AI tool recommendation based on the user's requirements.
-
-### 🎮 AI Playground
-Enter an AI use case and get a suitable AI tool suggestion.
-
-## 🏆 Hackathon Project
-
-Built for **CodeFury 9.0 Hackathon**.
-
-## 👩‍💻 Developer
-
-**Rekha**
-
-GitHub: https://github.com/rekha-2007
-
-## ⭐ Future Improvements
-
-- User authentication
-- Real AI API integration
-- More AI tools and categories
-- Advanced filtering and search
-- User reviews and ratings
-- Personalized AI recommendations
+Built for **CodeFury 9.0 – Theme 3: AI Marketplace**.
 
 ---
 
-⭐ If you like this project, consider giving it a star!
+## 🚀 Live Demo
+
+https://ai-hub-codefury-9-0.vercel.app/
+
+## 💻 GitHub Repository
+
+https://github.com/rekha-2007/AIHub-CodeFury-9.0
+
+---
+
+## ✨ Features
+
+### 🔐 User Authentication
+- Secure user registration and login
+- Firebase Authentication
+- Logout functionality
+- User-specific data protection
+
+### 🔎 AI Tool Discovery
+- Browse AI tools
+- Search by tool name, description, or category
+- Category-based filtering
+- Tool ratings and trust scores
+- User count and pricing information
+
+### ⚖️ AI Tool Comparison
+Compare up to two AI tools side-by-side based on:
+- Category
+- Rating
+- Trust Score
+- Number of Users
+- Pricing
+
+### 🎯 AI Model Recommendation
+AIHub recommends suitable AI tools based on the user's requirements, use case, budget, and technical needs.
+
+### 💬 AI Chatbot
+An AI-powered chatbot provides intelligent assistance and improves user interaction with the platform.
+
+### 🧪 AI Playground
+Users can interact with AI tools through the integrated playground experience.
+
+---
+
+## 🏆 CodeFury 9.0 Bonus Features
+
+AIHub implements the bonus features provided for Theme 3:
+
+- ✅ User Authentication
+- ✅ AI Chatbot
+- ✅ AI Model Recommendation
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- JavaScript
+- HTML
+- CSS
+- Vite
+
+### Backend / Services
+- Firebase Authentication
+- Cloud Firestore
+
+### Deployment
+- Vercel
+
+### Version Control
+- Git
+- GitHub
+
+---
+
+## 🔥 Firebase Integration
+
+AIHub uses Firebase for:
+
+- User authentication
+- User data storage
+- AI tool data storage
+- Secure Firestore access
+
+### Firestore Collections
+
+```text
+users
+tools
