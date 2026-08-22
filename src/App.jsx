@@ -3,7 +3,9 @@ import "./App.css";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  setDoc
 } from "firebase/firestore";
 
 import {
