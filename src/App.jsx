@@ -1,5 +1,19 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
+
+import {
+  collection,
+  getDocs
+} from "firebase/firestore";
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+
+import { auth, db } from "./firebase";
 
 const tools = [
   {
@@ -90,19 +104,61 @@ function App() {
   const [playgroundPrompt, setPlaygroundPrompt] = useState("");
   const [playgroundAnswer, setPlaygroundAnswer] = useState("");
 
-  const filteredTools = useMemo(() => {
-    return tools.filter((tool) => {
-      const matchesCategory =
-        category === "All" || tool.category === category;
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
-      const matchesSearch =
-        tool.name.toLowerCase().includes(search.toLowerCase()) ||
-        tool.description.toLowerCase().includes(search.toLowerCase()) ||
-        tool.category.toLowerCase().includes(search.toLowerCase());
+  const [firestoreTools, setFirestoreTools] = useState([]);
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [search, category]);
+useEffect(() => {
+  const loadTools = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, "tools"));
+
+      const firestoreData = snapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
+
+      setFirestoreTools(firestoreData);
+
+      console.log("Tools loaded successfully!", firestoreData);
+    } catch (error) {
+      console.error("Firestore error:", error);
+    }
+  };
+
+  loadTools();
+}, []);
+  useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    setAuthLoading(false);
+  });
+
+  return () => unsubscribe();
+}, []);
+
+const handleLogout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
+
+ const filteredTools = useMemo(() => {
+  return firestoreTools.filter((tool) => {
+    const matchesCategory =
+      category === "All" || tool.category === category;
+
+    const matchesSearch =
+      tool.name.toLowerCase().includes(search.toLowerCase()) ||
+      tool.description.toLowerCase().includes(search.toLowerCase()) ||
+      tool.category.toLowerCase().includes(search.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+}, [search, category, firestoreTools]);
 
   const toggleCompare = (tool) => {
     setCompare((current) => {
@@ -217,6 +273,106 @@ const runPlayground = () => {
   }
 };
 
+if (authLoading) {
+  return (
+    <div className="auth-loading">
+      Loading AIHub...
+    </div>
+  );
+}
+
+if (!user) {
+  return (
+    <div className="auth-page">
+      <div className="auth-card">
+
+        <div className="logo-mark">AI</div>
+
+        <h1>Welcome to AIHub</h1>
+
+        <p>Login or create an account to continue.</p>
+
+        <input
+          type="email"
+          placeholder="Enter your email"
+          id="auth-email"
+        />
+
+        <input
+          type="password"
+          placeholder="Enter your password"
+          id="auth-password"
+        />
+
+   <button
+  onClick={async () => {
+    const email = document.getElementById("auth-email").value;
+    const password = document.getElementById("auth-password").value;
+
+    if (!email || !password) {
+      alert("Please enter email and password.");
+      return;
+    }
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        email: userCredential.user.email,
+        lastLogin: new Date(),
+      });
+
+      alert("Login successful!");
+    } catch (error) {
+      alert(error.message);
+    }
+  }}
+>
+  Login
+</button>
+
+        <button
+          onClick={async () => {
+            const email = document.getElementById("auth-email").value;
+            const password = document.getElementById("auth-password").value;
+
+            if (!email || !password) {
+              alert("Please enter email and password.");
+              return;
+            }
+
+            try {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  await setDoc(doc(db, "users", userCredential.user.uid), {
+    email: userCredential.user.email,
+    createdAt: new Date(),
+  });
+
+  alert("Account created successfully!");
+} catch (error) {
+  alert(error.message);
+}
+          }}
+        >
+          Create Account
+        </button>
+
+        <small>Secure authentication powered by Firebase</small>
+
+      </div>
+    </div>
+  );
+}
+
 
   return (
     <div className="app">
@@ -237,8 +393,15 @@ const runPlayground = () => {
           <a href="#playground">Playground</a>
         </div>
 
-        <button className="login-btn">Sign In</button>
-      </nav>
+        {user && (
+  <button
+    className="login-btn"
+    onClick={handleLogout}
+  >
+    Logout
+  </button>
+)}
+  </nav>
 
       {/* HERO */}
       <main>
